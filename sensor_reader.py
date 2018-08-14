@@ -1,6 +1,6 @@
-MIN_SUB_BIT_PER_BIT = 24
+MIN_SUB_BIT_PER_BIT = 21
 HEADER_LENGTH_IN_BITS = 10
-MSG_LENGTH_IN_BITS = 32
+MSG_LENGTH_IN_BITS = 36
 
 temp_bit_buffer = ""
 msg_buffer = ""
@@ -35,10 +35,9 @@ def parse_msg(msg_buffer):
         temp_parsing_buffer = ""
 
     print(bit_buffer)
-    bit_buffer += "00"
-    if(len(bit_buffer) == MSG_LENGTH_IN_BITS):
+    if(len(bit_buffer) >= 16):
         print("Sensor ID: " +
-              str(int(bit_buffer[0:8], 2)) + " - " + str(int(bit_buffer[8:24], 2)))
+              str(int(bit_buffer[0:8], 2)) + " - " + str(int(bit_buffer[8:16], 2)) + " | 0x" + bit_buffer[16:])
     else:
         print("----")
 
